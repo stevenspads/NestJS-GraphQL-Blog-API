@@ -1,0 +1,50 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type CategoryObject {
+  id: Float
+  name: String
+}
+
+type PostObject {
+  id: Float
+  date: DateTime
+  title: String!
+  body: String
+  category: CategoryObject
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  post(id: Float!): PostObject!
+  posts(offset: Int, limit: Int, orderBy: String, sortOrder: SortOrder): [PostObject!]!
+}
+
+enum SortOrder {
+  DESC
+  ASC
+}
+
+type Mutation {
+  createPost(input: PostInput!): PostObject!
+  updatePost(input: PostInput!, id: Float!): PostObject!
+  deletePost(id: Float!): PostObject!
+}
+
+input PostInput {
+  id: Float
+  date: DateTime
+  title: String!
+  body: String
+  category: CategoryInput
+}
+
+input CategoryInput {
+  id: Float
+  name: String
+}
